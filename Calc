@@ -1,0 +1,203 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class JavaCalculator {
+
+    private Double total1 = 0.0;
+    private Double total2 = 0.0;
+    private  char math_operator;
+
+    private JPanel JavaCalculator;
+    private JButton butEquals;
+    private JButton butMultiple;
+    private JButton butTwo;
+    private JButton butThree;
+    private JButton butFive;
+    private JButton butEight;
+    private JButton butPoint;
+    private JButton butPlus;
+    private JButton butSix;
+    private JButton butNine;
+    private JButton butClear;
+    private JButton butMinus;
+    private JButton butDivide;
+    private JButton butOne;
+    private JButton butFour;
+    private JButton butSeven;
+    private JButton butZero;
+    private JTextField textDisplay;
+
+    private void getOperator (String butText) {
+        math_operator = butText.charAt(0);
+        total1 = total2 + Double.parseDouble(textDisplay.getText());
+        textDisplay.setText("");
+    }
+
+    public JavaCalculator() {
+        butOne.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butOneText = textDisplay.getText() + butOne.getText();
+                textDisplay.setText(butOneText);
+            }
+        });
+        butTwo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butTwoText = textDisplay.getText() + butTwo.getText();
+                textDisplay.setText(butTwoText);
+
+            }
+        });
+        butThree.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butThreeText = textDisplay.getText() + butThree.getText();
+                textDisplay.setText(butThreeText);
+
+            }
+        });
+        butFour.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butFourText = textDisplay.getText() + butFour.getText();
+                textDisplay.setText(butFourText);
+
+            }
+        });
+        butFive.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butFiveText = textDisplay.getText() + butFive.getText();
+                textDisplay.setText(butFiveText);
+
+            }
+        });
+        butSix.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butSixText = textDisplay.getText() + butSix.getText();
+                textDisplay.setText(butSixText);
+
+            }
+        });
+        butSeven.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butSevenText = textDisplay.getText() + butSeven.getText();
+                textDisplay.setText(butSevenText);
+
+            }
+        });
+        butEight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butEightText = textDisplay.getText() + butEight.getText();
+                textDisplay.setText(butEightText);
+
+            }
+        });
+        butNine.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butNineText = textDisplay.getText() + butNine.getText();
+                textDisplay.setText(butNineText);
+
+            }
+        });
+        butZero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String butZeroText = textDisplay.getText() + butZero.getText();
+                textDisplay.setText(butZeroText);
+
+            }
+        });
+
+        butPoint.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed (ActionEvent e){
+            //This will make it matter - "0." instead of "."
+            if (textDisplay.getText().equals("")) {
+                textDisplay.setText("0.");
+            }
+            //This will help to avoid a bug, 'cause ".." as well as "1.." or ".8." is not acceptable
+            //for our simple calculator, so we make those combinations impossible
+            else if (textDisplay.getText().contains(".")) {
+                butPoint.setEnabled(false);
+            }
+            else
+            {String butPointText = textDisplay.getText() + butPoint.getText();
+                    textDisplay.setText(butPointText);
+            }
+            butPoint.setEnabled(true);
+        }
+    });
+
+        butPlus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String button_text = butPlus.getText();
+                getOperator(button_text);
+            }
+        });
+        butEquals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switch (math_operator) {
+                    case '+':
+                        total2 = total1 + Double.parseDouble(textDisplay.getText());
+                        break;
+                    case '-':
+                        total2 = total1 - Double.parseDouble(textDisplay.getText());
+                        break;
+                    case '/':
+                        total2 = total1 / Double.parseDouble(textDisplay.getText());
+                        break;
+                    case '*':
+                        total2 = total1 * Double.parseDouble(textDisplay.getText());
+                        break;
+
+                }
+                textDisplay.setText(Double.toString(total2));
+            }
+        });
+        butClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textDisplay.setText("");
+
+            }
+        });
+        butMinus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String button_text = butMinus.getText();
+                getOperator(button_text);
+            }
+        });
+        butDivide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String button_text = butDivide.getText();
+                getOperator(button_text);
+            }
+        });
+        butMultiple.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String button_text = butMultiple.getText();
+                getOperator(button_text);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("JavaCalculator");
+        frame.setContentPane(new JavaCalculator().JavaCalculator);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
